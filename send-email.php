@@ -36,7 +36,7 @@ require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$to = 'viralinbound@gmail.com';
+$to = 'vivek@vivekscreation.com';
 $subject = 'New Lead from Robust Gifting: ' . ($data['name'] ?? 'Unknown');
 
 $message = "You have received a new lead from Robust Gifting.\n\n";
