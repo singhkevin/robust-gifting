@@ -41,11 +41,11 @@ $subject = 'New Lead from Robust Gifting: ' . ($data['name'] ?? 'Unknown');
 
 $message = "You have received a new lead from Robust Gifting.\n\n";
 foreach ($data as $key => $value) {
-    if ($key !== 'timestamp' && $key !== 'formName' && $key !== 'sourceWebsite') {
+    if ($key !== 'timestamp' && $key !== 'formName' && $key !== 'sourceWebsite' && $key !== 'pageUrl') {
         $message .= ucfirst($key) . ": " . $value . "\n";
     }
 }
-$message .= "\nForm: " . ($data['formName'] ?? 'Unknown');
+$message .= "\nPage URL: " . ($data['pageUrl'] ?? 'Unknown');
 $message .= "\nTimestamp: " . ($data['timestamp'] ?? date('c'));
 
 $mail = new PHPMailer(true);

@@ -214,6 +214,7 @@ downloadForm?.addEventListener('submit', e => {
   lead.timestamp = new Date().toISOString();
   lead.formName = 'Catalogue Download';
   lead.sourceWebsite = 'Robust Gifting';
+  lead.pageUrl = window.location.href;
 
   submitLeadToScript(lead).finally(() => {
     triggerDownload(currentDownloadFile);
@@ -253,6 +254,7 @@ enquiryForm?.addEventListener('submit', e => {
   enquiry.timestamp = new Date().toISOString();
   enquiry.formName = 'Main Enquiry Form';
   enquiry.sourceWebsite = 'Robust Gifting';
+  enquiry.pageUrl = window.location.href;
 
   submitLeadToScript(enquiry).finally(() => {
     enquiryForm.style.display = 'none';
