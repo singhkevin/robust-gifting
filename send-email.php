@@ -60,7 +60,7 @@ try {
     // IMPORTANT: ENTER YOUR HOSTINGER EMAIL PASSWORD BELOW
     // ----------------------------------------------------
     $mail->Username = 'leads@therobustworld.com';
-    $mail->Password = "r?j4gfMRzt;8C2."; // Securely loaded from config.php
+    $mail->Password = SMTP_PASSWORD; // Securely loaded from config.php
 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
