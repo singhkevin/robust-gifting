@@ -37,9 +37,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $to = 'vivek@vivekscreation.com';
-$subject = 'New Lead from Robust Gifting: ' . ($data['name'] ?? 'Unknown');
+$subject = 'New Lead: ' . ($data['name'] ?? 'Unknown');
 
-$message = "You have received a new lead from Robust Gifting.\n\n";
+$message = "";
 foreach ($data as $key => $value) {
     if ($key !== 'timestamp' && $key !== 'formName' && $key !== 'sourceWebsite' && $key !== 'pageUrl') {
         $message .= ucfirst($key) . ": " . $value . "\n";
