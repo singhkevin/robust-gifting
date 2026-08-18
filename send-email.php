@@ -36,7 +36,7 @@ require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$to = 'viralinbound@gmail.com';
+$to = 'leads@therobustworld.com';
 $subject = 'New Lead: ' . ($data['name'] ?? 'Unknown');
 
 $message = "";
@@ -79,8 +79,7 @@ try {
     $success = true;
 } catch (Exception $e) {
     $success = false;
-    // Uncomment next line to see exact SMTP error if needed:
-    // echo json_encode(["success" => false, "error" => $mail->ErrorInfo]); exit;
+    error_log('Lead email failed: ' . $mail->ErrorInfo);
 }
 
 echo json_encode(["success" => $success, "gs_triggered" => true]);
