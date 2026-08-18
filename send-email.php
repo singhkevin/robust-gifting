@@ -15,7 +15,7 @@ if (!$data) {
 // ==========================================
 // 1. FORWARD DATA TO GOOGLE APPS SCRIPT
 // ==========================================
-$scriptUrl = 'https://script.google.com/macros/s/AKfycbwB_k2SieQ1n-eI6ZC4j3EloxfvBurVcc0pD49BO-NNVKDgp9lZRYyxHianVFi3Xb-f/exec';
+$scriptUrl = 'https://script.google.com/macros/s/AKfycbxZHBuH-1aNUwhd44zgCUuClgv2Nx_bArH2MaGEHIC_i7O9A5xcinfqOWL_v85q7Ps5/exec';
 
 // Use cURL to send POST request
 $ch = curl_init($scriptUrl);
@@ -36,7 +36,7 @@ require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$to = 'vivek@vivekscreation.com';
+$to = 'viralinbound@gmail.com';
 $subject = 'New Lead: ' . ($data['name'] ?? 'Unknown');
 
 $message = "";

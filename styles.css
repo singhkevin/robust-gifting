@@ -172,12 +172,22 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
+  height: 84px;
   display: flex;
   align-items: center;
   gap: 40px;
 }
-.nav-logo { display: flex; align-items: center; }
-.nav-logo img { height: 88px; width: auto; display: block; }
+/* The bar stays 84px tall; the oversized emblem hangs below it at the
+   top of the page, then shrinks into the bar once the user scrolls. */
+.nav-logo { display: flex; align-items: center; align-self: flex-start; }
+.nav-logo img {
+  height: 128px;
+  width: auto;
+  display: block;
+  transition: height var(--transition);
+}
+.nav-header.scrolled .nav-logo { align-self: center; }
+.nav-header.scrolled .nav-logo img { height: 64px; }
 .nav-links { display: flex; gap: 32px; align-items: center; margin-left: auto; }
 .nav-links a { font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.75); transition: color var(--transition); }
 .nav-links a:hover { color: var(--gold-light); }
@@ -194,7 +204,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 120px 0 80px;
+  padding: 150px 0 80px;
 }
 .hero-bg { position: absolute; inset: 0; pointer-events: none; }
 .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .35; }
@@ -486,6 +496,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .catalogues-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
 .catalogue-card {
+  cursor: pointer;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -625,7 +636,7 @@ textarea { resize: vertical; min-height: 100px; }
 /* ── FOOTER ───────────────────────────────────────────────── */
 .footer { background: var(--navy); color: var(--white); padding: 72px 0 0; }
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 56px; border-bottom: 1px solid var(--border-dark); }
-.footer-logo { height: 88px; width: auto; margin-bottom: 16px; display: block; }
+.footer-logo { height: 158px; width: auto; margin-bottom: 16px; display: block; }
 .footer-brand p { font-size: .875rem; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 300px; margin-bottom: 24px; }
 .footer-social { display: flex; gap: 12px; }
 .footer-social a {
@@ -716,8 +727,8 @@ textarea { resize: vertical; min-height: 100px; }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .nav-logo img,
-  .footer-logo { height: 64px; }
+  .nav-logo img { height: 108px; }
+  .footer-logo { height: 115px; }
   .nav-links { gap: 24px; }
   .nav-inner { gap: 24px; }
 
@@ -740,9 +751,9 @@ textarea { resize: vertical; min-height: 100px; }
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
 
-  .nav-logo img,
-  .footer-logo { height: 56px; }
-  .nav-inner { padding: 0 16px; gap: 16px; }
+  .nav-logo img { height: 92px; }
+  .footer-logo { height: 101px; }
+  .nav-inner { padding: 0 16px; gap: 16px; height: 72px; }
   .call-float { display: inline-flex; }
   .whatsapp-float { bottom: 32px; right: 32px; }
   .nav-links, .nav-cta { display: none; }
@@ -864,9 +875,9 @@ textarea { resize: vertical; min-height: 100px; }
 }
 
 @media (max-width: 480px) {
-  .nav-logo img,
-  .footer-logo { height: 94px; }
-  .nav-inner { padding: 0 12px; gap: 12px; }
+  .nav-logo img { height: 80px; }
+  .footer-logo { height: 169px; }
+  .nav-inner { padding: 0 12px; gap: 12px; height: 64px; }
 
   .pillars-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .pillar-card { padding: 20px 14px; }

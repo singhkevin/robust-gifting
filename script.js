@@ -104,8 +104,10 @@ const downloadAgainBtn = document.getElementById('downloadAgainBtn');
 
 let currentDownloadFile = '';
 
-document.querySelectorAll('.btn-download').forEach(btn => {
-  btn.addEventListener('click', () => {
+document.querySelectorAll('.catalogue-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const btn = card.querySelector('.btn-download');
+    if (!btn) return;
     const file = btn.dataset.file;
     const name = btn.dataset.name;
     currentDownloadFile = file;
@@ -204,10 +206,6 @@ downloadForm?.addEventListener('submit', e => {
   e.preventDefault();
   if (!validateForm(downloadForm)) return;
 
-  const btn = downloadForm.querySelector('button[type="submit"]');
-  btn.textContent = 'Processing…';
-  btn.disabled = true;
-
   const formData = new FormData(downloadForm);
   const lead = Object.fromEntries(formData.entries());
   lead.catalogue = currentDownloadFile;
@@ -216,13 +214,12 @@ downloadForm?.addEventListener('submit', e => {
   lead.sourceWebsite = 'Robust Gifting';
   lead.pageUrl = window.location.href;
 
-  submitLeadToScript(lead).finally(() => {
-    triggerDownload(currentDownloadFile);
-    downloadForm.style.display = 'none';
-    downloadSuccess.style.display = 'flex';
-    btn.innerHTML = `Download Now <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M20 18H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
-    btn.disabled = false;
-  });
+  // Start the download immediately; the lead is submitted in the background
+  // (the server takes several seconds and the user shouldn't wait on it).
+  submitLeadToScript(lead);
+  triggerDownload(currentDownloadFile);
+  downloadForm.style.display = 'none';
+  downloadSuccess.style.display = 'flex';
 });
 
 function triggerDownload(filename) {
@@ -359,6 +356,7 @@ function initCarousel(grid) {
 
   grid.addEventListener('pointerdown', e => {
     if (e.pointerType === 'touch') return;
+    if (grid.scrollWidth <= grid.clientWidth) return; // nothing to drag-scroll (e.g. desktop grid layout)
     dragging = true;
     moved = false;
     startX = e.clientX;
