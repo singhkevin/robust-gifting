@@ -36,7 +36,7 @@ require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$to = 'leads@therobustworld.com';
+$to = 'vivek@vivekscreation.com';
 $subject = 'New Lead: ' . ($data['name'] ?? 'Unknown');
 
 $message = "";
